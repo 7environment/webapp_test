@@ -15,6 +15,7 @@ function App() {
 
   return (
     <div className="App">
+      <span>tg.initData</span>
       work
       <button onClick={onClose}>Закрыть</button>
     </div>
