@@ -1,8 +1,11 @@
 import './App.css';
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+const axios = require('axios');
 const tg = window.Telegram.WebApp
 
 function App() {
+  const [username, setUsername] = useState("");
+
   useEffect(() => {
     tg.ready()
   }, []);
@@ -11,11 +14,15 @@ function App() {
     tg.close();
   }
 
+  async function saveUser() {
+      await axios.post("http://45.131.40.90/api/thumbnail", {initData: tg.initData, data: {username: username}})
+  }
+
   return (
     <div className="App">
       <button onClick={onClose}>Exit</button>
-      <span>{tg.initData}</span>
-      <span>{tg.initDataUnsafe.user.id}</span>
+      <input onChange={(e) => {setUsername(e.target.value)}} type="text">{username}</input>
+      <button onClick={saveUser}>Сохранить</button>
     </div>
   );
 }
