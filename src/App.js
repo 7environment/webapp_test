@@ -1,6 +1,6 @@
 import './App.css';
 import {useEffect, useState} from "react";
-const axios = require('axios');
+import axios from "axios";
 const tg = window.Telegram.WebApp
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="App">
       <button onClick={onClose}>Exit</button>
-      <input onChange={(e) => {setUsername(e.target.value)}} type="text">{username}</input>
+      <input onChange={(e) => {setUsername(e.target.value)}} type="text" value={username} />
       <button onClick={saveUser}>Сохранить</button>
     </div>
   );
