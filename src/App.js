@@ -5,6 +5,7 @@ const tg = window.Telegram.WebApp
 
 function App() {
   const [username, setUsername] = useState("");
+  const [debug, setDebug] = useState("");
 
   useEffect(() => {
     tg.ready()
@@ -15,7 +16,8 @@ function App() {
   }
 
   async function saveUser() {
-      await axios.post("http://45.131.40.90/api/thumbnail", {initData: tg.initData, data: {username: username}})
+    const user =await axios.post("http://45.131.40.90/api/thumbnail", {initData: tg.initData, data: {username: username}})
+    setDebug(user)
   }
 
   return (
@@ -23,6 +25,7 @@ function App() {
       <button onClick={onClose}>Exit</button>
       <input onChange={(e) => {setUsername(e.target.value)}} type="text" value={username} />
       <button onClick={saveUser}>Сохранить</button>
+      <h1>{debug}</h1>
     </div>
   );
 }
