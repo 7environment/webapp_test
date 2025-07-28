@@ -27,6 +27,7 @@ function App() {
   async function getThumbnail(username) {
       if (username.length > 2) {
           setIsLoading(true);
+          setUserProfile({username: username, thumbnail: null})
           const response = await axios.get(`https://swixgodly.ru/api/thumbnail/${username}`);
           setIsLoading(false);
           if (response.status === 200) {
