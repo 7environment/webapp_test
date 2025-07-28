@@ -16,16 +16,17 @@ function App() {
   }
 
   async function saveUser() {
-    const user = await axios.post("https://swixgodly.ru/api/username", {initData: tg.initData, data: {username: username}})
-    setDebug(user)
+    const response = await axios.post("https://swixgodly.ru/api/username", {initData: tg.initData, data: {username: username}})
+    setDebug(response.data)
   }
 
   return (
     <div className="App">
+      <h1>version 1</h1>
       <button onClick={onClose}>Exit</button>
       <input onChange={(e) => {setUsername(e.target.value)}} type="text" value={username} />
       <button onClick={saveUser}>Сохранить</button>
-      <h1>{debug}</h1>
+      <h1>{debug.username}</h1>
     </div>
   );
 }
