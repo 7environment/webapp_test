@@ -27,13 +27,13 @@ function App() {
   async function getThumbnail(username) {
       if (username.length > 2) {
           setIsLoading(true);
-          setUserProfile({username: username, thumbnail: null})
+          setUserProfile({username: username, thumbnail: ""})
           const response = await axios.get(`https://swixgodly.ru/api/thumbnail/${username}`);
           setIsLoading(false);
           if (response.status === 200) {
-              setUserProfile({username: username, thumbnail: response.data.imageUrl})
+              setUserProfile({username: userProfile.username, thumbnail: response.data.imageUrl})
           } else {
-              setUserProfile({username: username, thumbnail: null});
+              setUserProfile({username: userProfile.username, thumbnail: null});
           }
       } else {
           setUserProfile({username: username, thumbnail: null});
@@ -61,7 +61,7 @@ function App() {
         {isLoading ?
           <h3>Загрузка...</h3>
         :
-          userProfile.thumbnail ?
+          userProfile.thumbnail && userProfile.thumbnail.length > 0 ?
             <img src={userProfile.thumbnail} alt="profile"/>
           :
             <h3>Аккаунта с таким ником нет</h3>
