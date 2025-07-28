@@ -49,7 +49,7 @@ function App() {
   }
 
   const chooseAnother = () => {
-      setUserProfile(null)
+      setUserProfile({username: "", thumbnail: null});
       setIsChoosing(true);
   }
 
