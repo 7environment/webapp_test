@@ -16,7 +16,7 @@ function App() {
   }
 
   async function saveUser() {
-    const user =await axios.post("https://swixgodly.ru/api/thumbnail", {initData: tg.initData, data: {username: username}})
+    const user = await axios.post("https://swixgodly.ru/api/username", {initData: tg.initData, data: {username: username}})
     setDebug(user)
   }
 
